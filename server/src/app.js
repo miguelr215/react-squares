@@ -3,14 +3,16 @@ import cors from 'cors';
 import morgan from 'morgan';
 
 // TODO import routes file
-import { usersRouter } from './routes/usersRoutes.js';
+import { userRouter } from './routes/userRoutes.js';
 
 const app = express();
 
-if (process.env.SQUARES_ENV === 'development') {
-  console.log(`morgan?`);
-  app.use(morgan('dev'));
-}
+app.use(morgan('dev'));
+
+// if (process.env.SQUARES_ENV === 'development') {
+//   console.log(`morgan?`);
+//   app.use(morgan('dev'));
+// }
 
 app.use(express.json());
 app.use(cors());
@@ -21,6 +23,6 @@ app.use((req, res, next) => {
 });
 
 // TODO mount router on route
-app.use('/auth', usersRouter);
+app.use('/auth', userRouter);
 
 export default app;
